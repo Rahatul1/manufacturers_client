@@ -37,9 +37,8 @@ const Navbar = () => {
                 <div className="navbar-start hidden lg:flex text-white">
                     <ul className="menu menu-horizontal p-0">
                         <li><Link to="/">Home</Link></li>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/about">About</Link></li>
+                        <li><Link to="/about">Blogs</Link></li>
+                        <li><Link to="/dashboard">Dashboard</Link></li>
                     </ul>
                 </div>
                 <li>{user ? <button onClick={logout} className="btn btn-dark">Sign Out</button> : <Link to="/login" className="btn btn-secondary">Login</Link>}</li>
