@@ -31,12 +31,12 @@ const BusinessSummary = () => {
                         <div className="stat-desc">↘︎ 90 (14%)</div>
                     </div>
                 </div>
-                <div class="card  shadow-xl">
-                    <div class="card-body">
-                        <h2 class="card-title">Have any qustion about us,</h2>
+                <div className="card  shadow-xl">
+                    <div className="card-body">
+                        <h2 className="card-title">Have any qustion about us,</h2>
                         <p>Don't hasited to contact us.</p>
-                        <div class="card-actions justify-end">
-                            <button class="btn btn-primary">Buy Now</button>
+                        <div className="card-actions justify-end">
+                            <button className="btn btn-primary">Buy Now</button>
                         </div>
                     </div>
                 </div>
