@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 // import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 import useParts from '../../Hooks/useParts';
@@ -42,6 +43,7 @@ const Purchase = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                toast.success('add product')
                 // if (data.success) {
                 //     // toast.success(`Appointments seccess, ${minOrderQuantity} at ${stock}`)
                 //     toast.success("Appointments seccess")
@@ -70,7 +72,7 @@ const Purchase = () => {
                         </div>
                     </div>
                 </div>
-                <div class="divider lg:divider-horizontal">OR</div>
+                <div className="divider lg:divider-horizontal">OR</div>
                 <div className="cols-1 pl-28">
                     <h2 className="card-title justify-center text-3xl text-accent">Purchase Now Your Item</h2>
                     <form onSubmit={handleBooking} className="grid grid-cols-1 gap-5 justify-items-center pt-5">
@@ -85,6 +87,7 @@ const Purchase = () => {
                             name="email"
                             className="input input-bordered w-full max-w-xs" />
                         <input type="text"
+                            disabled
                             value={name}
                             name="name"
                             placeholder="Address" className="input input-bordered w-full max-w-xs" />
@@ -98,8 +101,8 @@ const Purchase = () => {
                             name="quantity"
                             placeholder="quantity" className="input input-bordered w-full max-w-xs" />
                         <input
-                            className="w-50 mx-auto btn btn-dark mt-3"
-                            value="Add Item"
+                            className="w-50 mx-auto btn btn-dark"
+                            value="Purchase Booked"
                             type="submit"
                         />
                     </form>

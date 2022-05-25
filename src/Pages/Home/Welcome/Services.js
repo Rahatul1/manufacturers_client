@@ -9,19 +9,19 @@ const Services = () => {
                     <div className="hero-content flex-col lg:flex-row-reverse bg-gray-300 px-10 rounded-lg border-2 shadow">
                         <div className="lg:px-48 my-5">
                             <div className="flex justify-center items-center bg-neutral rounded-lg px-10">
-                                <img class="mask mask-hexagon w-24 bg-white" src="https://sovereignexports.com/images/icons/bike.png" alt='' />
+                                <img className="mask mask-hexagon w-24 bg-white" src="https://sovereignexports.com/images/icons/bike.png" alt='' />
                                 <h1 className="px-5">BICYCLE SPARE PARTS</h1>
                             </div>
                             <div className="flex justify-center items-center bg-neutral rounded-lg my-2">
-                                <img class="mask mask-hexagon w-24 bg-white" src="https://sovereignexports.com/images/icons/bicycle-fork.png " alt='' />
+                                <img className="mask mask-hexagon w-24 bg-white" src="https://sovereignexports.com/images/icons/bicycle-fork.png " alt='' />
                                 <h1 className="px-5">COMPLETE BICYLE</h1>
                             </div>
                             <div className="flex justify-center items-center bg-neutral rounded-lg">
-                                <img class="mask mask-hexagon w-24 bg-white" src="https://sovereignexports.com/images/icons/tools.png" alt='' />
+                                <img className="mask mask-hexagon w-24 bg-white" src="https://sovereignexports.com/images/icons/tools.png" alt='' />
                                 <h1 className="px-5">FASTNERS & OTHER ITEMS</h1>
                             </div>
                             <div className="flex justify-center items-center bg-neutral rounded-lg my-2">
-                                <img class="mask mask-hexagon w-24 bg-white " src="https://sovereignexports.com/images/icons/clutch-disc.png" alt='' />
+                                <img className="mask mask-hexagon w-24 bg-white " src="https://sovereignexports.com/images/icons/clutch-disc.png" alt='' />
                                 <h1 className="px-5">MOTORCYCLE PARTS</h1>
                             </div>
                         </div>
