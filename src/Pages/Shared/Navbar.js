@@ -43,6 +43,7 @@ const Navbar = () => {
                 </div>
                 <li>{user ? <button onClick={logout} className="btn btn-dark">Sign Out</button> : <Link to="/login" className="btn btn-secondary">Login</Link>}</li>
             </div>
+
         </div>
     );
 };

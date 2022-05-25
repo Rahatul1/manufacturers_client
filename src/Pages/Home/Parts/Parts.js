@@ -1,14 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import useParts from '../../Hooks/useParts';
 import Part from './Part';
 
 const Parts = () => {
 
-    const [parts, setParts] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:4000/parts')
-            .then(res => res.json())
-            .then(data => setParts(data))
-    }, [])
+    const [parts] = useParts();
 
     return (
         <div id="parts">

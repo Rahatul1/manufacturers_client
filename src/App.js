@@ -14,6 +14,7 @@ import NotFound from './Pages/Shared/NotFound';
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import Blogs from './Pages/Blogs/Blogs';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="home" element={<Home />}></Route>
         <Route path="blogs" element={<Blogs />}></Route >
-        <Route path="purchase" element={
+        <Route path="purchase/:id" element={
           <RequireAuth>
             <Purchase />
           </RequireAuth>
