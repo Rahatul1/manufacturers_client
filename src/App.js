@@ -15,6 +15,11 @@ import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import Blogs from './Pages/Blogs/Blogs';
 import 'react-toastify/dist/ReactToastify.css';
+import ManageProduct from './Pages/Dashboard/Admin/ManageProduct';
+import ManageAllOrder from './Pages/Dashboard/Admin/ManageAllOrder';
+import MakeAdmin from './Pages/Dashboard/Admin/MakeAdmin';
+import AddProduct from './Pages/Dashboard/Admin/AddProduct';
+import RequireAdmin from './Pages/Login/RequireAdmin';
 
 
 
@@ -32,20 +37,50 @@ function App() {
           </RequireAuth>
         }></Route>
         <Route path="dashboard" element={
-          <RequireAuth>
-            <Dashboard />
-          </RequireAuth>
+          <Dashboard />
         }>
           <Route index element={<Myprofile />}></Route>
-          <Route path="review" element={<Addreview />}></Route>
-          <Route path="orders" element={<MyOrders />}></Route>
+          <Route path="review" element={
+            <RequireAuth>
+              <Addreview />
+            </RequireAuth>
+          }></Route>
+          <Route path="orders" element={
+            <RequireAuth>
+              <MyOrders />
+            </RequireAuth>}
+          ></Route>
+          <Route path="makeadmin" element={
+            <RequireAdmin>
+              <MakeAdmin />
+            </RequireAdmin>
+          }
+          ></Route>
+          <Route path="manageorder" element={
+            <RequireAdmin>
+              <ManageAllOrder />
+            </RequireAdmin>
+          }
+          ></Route>
+          <Route path="manageproduct" element={
+            <RequireAdmin>
+              <ManageProduct />
+            </RequireAdmin>
+          }
+          ></Route>
+          <Route path="addproduct" element={
+            <RequireAdmin>
+              <AddProduct />
+            </RequireAdmin>
+          }
+          ></Route>
         </Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="*" element={<NotFound />}></Route>
-      </Routes>
+      </Routes >
       <ToastContainer />
-    </div>
+    </div >
   );
 }
 

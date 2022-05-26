@@ -4,7 +4,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
-const axios = require('axios').default;
 
 const MyOrders = () => {
     const [myOrder, setMyOrder] = useState([]);
@@ -57,7 +56,7 @@ const MyOrders = () => {
         <div>
             <h2 className="text-3xl text-accent text-center pb-5">My orders: {myOrder.length}</h2>
             {/* <div className="overflow-x-auto"> */}
-            <table className="table w-full">
+            <table className="table w-full pl-20">
                 <thead>
                     <tr>
                         <th></th>
