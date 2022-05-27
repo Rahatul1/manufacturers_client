@@ -19,7 +19,7 @@ const Myprofile = () => {
 
     useEffect(() => {
         if (user) {
-            fetch("http://localhost:4000/profileUpdated", {
+            fetch("https://infinite-castle-74205.herokuapp.com/profileUpdated", {
                 method: 'GET',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -50,7 +50,7 @@ const Myprofile = () => {
             location: event.target.location.value,
             linkdin: event.target.linkdin.value
         }
-        fetch('http://localhost:4000/profileUpdate', {
+        fetch('https://infinite-castle-74205.herokuapp.com/profileUpdate', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

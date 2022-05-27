@@ -7,7 +7,7 @@ import ManageOrderRow from './ManageOrderRow';
 const ManageAllOrder = () => {
     const [deleteOrder, setDeleteOrder] = useState(null);
 
-    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`http://localhost:4000/manageAllOrder`, {
+    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`https://infinite-castle-74205.herokuapp.com/manageAllOrder`, {
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }

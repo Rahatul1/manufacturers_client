@@ -13,7 +13,7 @@ const CardPay = ({ booking }) => {
     const { _id, price, email, name } = booking;
 
     useEffect(() => {
-        fetch('http://localhost:4000/create-payment-intent', {
+        fetch('https://infinite-castle-74205.herokuapp.com/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -80,7 +80,7 @@ const CardPay = ({ booking }) => {
                 booking: _id,
                 transactionId: paymentIntent.id
             }
-            fetch(`http://localhost:4000/bookings/${_id}`, {
+            fetch(`https://infinite-castle-74205.herokuapp.com/bookings/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',
@@ -149,7 +149,7 @@ const CardPay = ({ booking }) => {
     const { price, email, name, _id } = booking;
 
     useEffect(() => {
-        fetch('http://localhost:4000/create-payment-intent', {
+        fetch('https://infinite-castle-74205.herokuapp.com/create-payment-intent', {
             method: "POST",
             headers: {
                 'content-type': 'application/json',

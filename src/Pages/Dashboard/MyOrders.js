@@ -11,7 +11,7 @@ const MyOrders = () => {
     const [deleteOrder, setDeleteOrder] = useState(null);
     const [user] = useAuthState(auth);
 
-    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`http://localhost:4000/purchase?email=${user?.email}`, {
+    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`https://infinite-castle-74205.herokuapp.com/purchase?email=${user?.email}`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
