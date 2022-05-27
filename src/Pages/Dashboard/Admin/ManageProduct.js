@@ -8,7 +8,7 @@ const ManageProduct = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm("Are you sure you want to delete");
         if (proceed) {
-            const url = `http://localhost:4000/parts/${id}`;
+            const url = `https://infinite-castle-74205.herokuapp.com/parts/${id}`;
             fetch(url, {
                 method: "DELETE",
             })
@@ -23,8 +23,8 @@ const ManageProduct = () => {
     };
     return (
         <div className="">
-            <div class="overflow-x-auto">
-                <table class="table w-11/12">
+            <div className="overflow-x-auto">
+                <table className="table w-11/12">
                     <thead>
                         <tr>
                             <th></th>
@@ -45,7 +45,7 @@ const ManageProduct = () => {
                                 <td>{part.price}</td>
                                 <td>{part.minOrderQuantity}</td>
                                 <td>{part.stock}</td>
-                                <td><button onClick={() => handleDelete(parts._id)} class="btn btn-xs">delete Product</button></td>
+                                <td><button onClick={() => handleDelete(parts._id)} className="btn btn-xs">delete Product</button></td>
                             </tr>)
                         }
                     </tbody>

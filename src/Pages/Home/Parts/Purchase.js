@@ -13,8 +13,20 @@ const Purchase = () => {
     const [parts, setParts] = useParts({});
     const { minOrderQuantity, name, price, stock, image } = parts;
 
+    // // const [minQ, setminQ] = useState(true)
+    // const state = {
+    //     disabled: true
+    // }
+    // const handlequantity = (e) => {
+    //     if (e.target.value >= minOrderQuantity) {
+    //         this.setState({
+    //             disabled: false
+    //         });
+    //     }
+    // }
+
     useEffect(() => {
-        fetch(`http://localhost:4000/parts/${id}`)
+        fetch(`https://infinite-castle-74205.herokuapp.com/parts/${id}`)
             .then(res => res.json())
             .then(data => setParts(data))
     }, [id, setParts]);
@@ -26,6 +38,7 @@ const Purchase = () => {
     const handleBooking = (event) => {
         event.preventDefault();
         const booking = {
+            price: parts.price,
             displayName: user.displayName,
             email: user.email,
             name: event.target.name.value,
@@ -33,7 +46,7 @@ const Purchase = () => {
             address: event.target.address.value,
             quantity: event.target.quantity.value
         }
-        fetch('http://localhost:4000/purchase', {
+        fetch('https://infinite-castle-74205.herokuapp.com/purchase', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -54,13 +67,14 @@ const Purchase = () => {
                 // }
                 // setParts(null);
             })
+        //
     }
     return (
-        <div>
-            <div className="flex justify-center mt-5">
+        <>
+            <div className="justify-center mt-5">
                 <div className="cols-1">
                     <h2 className="card-title justify-center text-3xl text-accent mb-5">Your item</h2>
-                    <div className="hero  bg-neutral text-white rounded">
+                    <div className="hero  bg-gray-100 rounded">
                         <div className="hero-content flex-col lg:flex-row">
                             <img src={image} alt="" className="max-w-sm rounded-lg w-80 shadow-2xl" />
                             <div>
@@ -72,10 +86,9 @@ const Purchase = () => {
                         </div>
                     </div>
                 </div>
-                <div className="divider lg:divider-horizontal">OR</div>
-                <div className="cols-1 pl-28">
-                    <h2 className="card-title justify-center text-3xl text-accent">Purchase Now Your Item</h2>
-                    <form onSubmit={handleBooking} className="grid grid-cols-1 gap-5 justify-items-center pt-5">
+                <div className="cols-1 py-16">
+                    <h2 className="card-title justify-center text-3xl text-accent pb-2">Purchase Now Your Item</h2>
+                    <form onSubmit={handleBooking} className="grid grid-cols-1 gap-5 justify-items-center bg-gray-100 py-5">
                         <input type="text"
                             name="displayName"
                             disabled
@@ -98,9 +111,11 @@ const Purchase = () => {
                             name="phone"
                             placeholder="Phone Number" className="input input-bordered w-full max-w-xs" />
                         <input type="number"
+                            // onChange={handlequantity}
                             name="quantity"
                             placeholder="quantity" className="input input-bordered w-full max-w-xs" />
                         <input
+                            // disabled={state.disabled}
                             className="w-50 mx-auto btn btn-dark"
                             value="Purchase Booked"
                             type="submit"
@@ -108,7 +123,7 @@ const Purchase = () => {
                     </form>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

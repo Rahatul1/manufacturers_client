@@ -3,10 +3,10 @@ import { toast } from 'react-toastify';
 
 const AdminRow = ({ user, index, refetch }) => {
     const { email, role } = user;
-    console.log(user)
+
 
     const makeadmin = () => {
-        fetch(`http://localhost:4000/user/admin/${email}`, {
+        fetch(`https://infinite-castle-74205.herokuapp.com/user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -29,8 +29,8 @@ const AdminRow = ({ user, index, refetch }) => {
             <tr>
                 <th>{index + 1}</th>
                 <td>{email}</td>
-                <td>{role !== 'admin' && <button class="btn btn-xs" onClick={makeadmin}>Make Admin</button>}</td>
-                <td><button class="btn btn-xs">Remove</button></td>
+                <td>{role !== 'admin' && <button className="btn btn-xs" onClick={makeadmin}>Make Admin</button>}</td>
+                <td><button className="btn btn-xs">Remove</button></td>
             </tr>
         </>
     );

@@ -1,61 +1,31 @@
-import { signOut } from 'firebase/auth';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useQuery } from 'react-query';
 import auth from '../../firebase.init';
 
+import Lodding from '../Shared/Lodding';
+import DeleteOrder from './DeleteOrder';
+import OrderRow from './OrderRow';
+
 const MyOrders = () => {
-    const [myOrder, setMyOrder] = useState([]);
+    const [deleteOrder, setDeleteOrder] = useState(null);
     const [user] = useAuthState(auth);
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        if (user) {
-            fetch(`http://localhost:4000/purchase?email=${user?.email}`, {
-                method: 'GET',
-                headers: {
-                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-                }
-            })
-                .then(res => {
-                    if (res.status === 401 || res.status === 403) {
-                        signOut(auth);
-                        localStorage.removeItem('accessToken');
-                        navigate('/');
-                    }
-                    return res.json()
-                })
-                .then(data => {
-
-                    setMyOrder(data);
-                });
+    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`http://localhost:4000/purchase?email=${user?.email}`, {
+        method: 'GET',
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
-    }, [user, navigate])
-
-    const handleDelete = (id) => {
-        const proceed = window.confirm("Are you sure you want to delete");
-        if (proceed) {
-            //
-            const url = `http://localhost:4000/purchase/${id}`;
-            fetch(url, {
-                method: "DELETE",
-            })
-                .then((res) => res.json())
-                .then((data) => {
-                    console.log(data);
-                    const remaining = myOrder.filter((product) => product._id !== id);
-                    setMyOrder(remaining);
-                    toast("Delete Success");
-                });
-        }
-    };
-
+    }).then(res => res.json()))
+    console.log(orders)
+    if (isLoading) {
+        return <Lodding />
+    }
 
     return (
         <div>
-            <h2 className="text-3xl text-accent text-center pb-5">My orders: {myOrder.length}</h2>
-            {/* <div className="overflow-x-auto"> */}
+            <h2 className="text-3xl text-accent text-center pb-5">My orders: {orders.length}</h2>
+
             <table className="table w-full pl-20">
                 <thead>
                     <tr>
@@ -70,20 +40,17 @@ const MyOrders = () => {
                 </thead>
                 <tbody>
                     {
-                        myOrder.map((a, index) => <tr key={index}>
-                            <th>{index + 1}</th>
-                            <td>{a.email}</td>
-                            <td>{a.name}</td>
-                            <td>{a.address}</td>
-                            <td>{a.quantity}</td>
-                            <td><button className="btn btn-primary btn-xs">Paid</button></td>
-                            <td><button onClick={() => handleDelete(myOrder._id)} className="btn btn-primary btn-xs">Delete</button></td>
-                        </tr>)
+                        orders?.map((order, index) => <OrderRow order={order} index={index} key={order._id} setDeleteOrder={setDeleteOrder}></OrderRow>)
                     }
                 </tbody>
             </table>
-            {/* </div> */}
-
+            {
+                deleteOrder && <DeleteOrder
+                    setDeleteOrder={setDeleteOrder}
+                    refetch={refetch}
+                    deleteOrder={deleteOrder}
+                ></DeleteOrder>
+            }
         </div >
     );
 };
