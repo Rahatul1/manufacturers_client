@@ -14,8 +14,8 @@ const OrderRow = ({ order, index, setDeleteOrder }) => {
                 <td>{address}</td>
                 <td>{quantity}</td>
                 <td>
-                    {/* <Link to={`/dashboard/payment/${order._id}`}><button className="btn btn-primary btn-xs">Paid Now</button></Link> */}
                     {(order?.price && !order?.paid) && <Link to={`/dashboard/payment/${order._id}`}><button className="btn btn-primary btn-xs">Paid Now</button></Link>}
+
                     {(order?.price && order?.paid) && <div>
                         <p><span className='text-success'>Paid</span></p>
                         <p>Transaction id: <span className='text-success'>{order.transactionId}</span></p>

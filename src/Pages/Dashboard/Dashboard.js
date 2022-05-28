@@ -17,7 +17,7 @@ const Dashboard = () => {
                 <label htmlFor="dashboard-sidebar" className="drawer-overlay"></label>
                 <ul className="menu p-4 overflow-y-auto  bg-gray-100 text-base-content">
                     <li><Link to="/dashboard">My Profile</Link></li>
-                    {!admin === user && <>
+                    {user && <>
                         <li><Link to="/dashboard/orders">My Orders</Link></li>
                         <li><Link to="/dashboard/review">Add a Review</Link></li>
                     </>}
@@ -36,3 +36,5 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+// !admin ===
