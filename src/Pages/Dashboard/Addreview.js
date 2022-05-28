@@ -17,11 +17,11 @@ const Addreview = () => {
     }
     return (
         <>
-            <div class="card w-1/2 bg-base-100 shadow-xl">
-                <div class="card-body">
-                    <h2 class="card-title text-3xl text-center text-accent">Add a review</h2>
+            <div className="card w-1/2 bg-base-100 shadow-xl">
+                <div className="card-body">
+                    <h2 className="card-title text-3xl text-center text-accent">Add a review</h2>
                     <form onSubmit={handleReview}>
-                        <div class="mb-3">
+                        <div className="mb-3">
                             <input
                                 className="mt-3 p-2 border-2 rounded-lg form-control"
                                 value={user?.displayName}
@@ -31,7 +31,7 @@ const Addreview = () => {
                                 placeholder="Enter name"
                             />
                         </div>
-                        <div class="mb-3">
+                        <div className="mb-3">
                             <input
                                 className="mt-3 form-control p-2 border-2 rounded-lg"
                                 type="text"
@@ -40,7 +40,7 @@ const Addreview = () => {
                                 placeholder="Enter rating"
                             />
                         </div>
-                        <div class="mb-3">
+                        <div className="mb-3">
                             <input
                                 className="mt-3 form-control p-2 border-2 rounded-lg"
                                 type="text"
