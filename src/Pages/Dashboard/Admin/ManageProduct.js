@@ -4,15 +4,17 @@ import useParts from '../../Hooks/useParts';
 
 const ManageProduct = () => {
     const [parts, setParts] = useParts()
-    // const { _id } = parts;
-    console.log(parts)
 
     const handleDelete = (id) => {
         const proceed = window.confirm("Are you sure you want to delete");
         if (proceed) {
-            const url = `https://infinite-castle-74205.herokuapp.com/parts/${parts._id}`;
+            const url = `https://infinite-castle-74205.herokuapp.com/parts/${id}`;
             fetch(url, {
                 method: "DELETE",
+                headers: {
+                    'content-type': 'application/json',
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                }
 
             })
                 .then((res) => res.json())
@@ -49,7 +51,7 @@ const ManageProduct = () => {
                                 <td>{part.price}</td>
                                 <td>{part.minOrderQuantity}</td>
                                 <td>{part.stock}</td>
-                                <td><button onClick={() => handleDelete(parts._id)} className="btn btn-xs">delete Product</button></td>
+                                <td><button onClick={() => handleDelete(part._id)} className="btn btn-xs">delete Product</button></td>
                             </tr>)
                         }
                     </tbody>
@@ -60,9 +62,3 @@ const ManageProduct = () => {
 };
 
 export default ManageProduct;
-
-/* <div className="text-center">
-                    <Link to="/addItem">
-                        <button className="btn btn-dark mb-5">Add new item</button>
-                    </Link>
-                </div> */
