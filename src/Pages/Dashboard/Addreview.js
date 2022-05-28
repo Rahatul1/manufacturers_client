@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import Lodding from "../Shared/Lodding";
 
@@ -10,6 +10,24 @@ const Addreview = () => {
     console.log(user);
     const handleReview = (event) => {
         event.preventDefault();
+        const addReview = {
+            name: event.target.name.value,
+            rating: event.target.rating.value,
+            comment: event.target.comment.value,
+        };
+        fetch("http://localhost:4000/review", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(addReview),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.success) {
+                    toast("review add");
+                }
+            });
 
     };
     if (loading) {
