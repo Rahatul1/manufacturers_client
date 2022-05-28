@@ -3,19 +3,22 @@ import { toast } from 'react-toastify';
 import useParts from '../../Hooks/useParts';
 
 const ManageProduct = () => {
-    const [parts, setParts] = useParts([])
+    const [parts, setParts] = useParts()
+    // const { _id } = parts;
+    console.log(parts)
 
     const handleDelete = (id) => {
         const proceed = window.confirm("Are you sure you want to delete");
         if (proceed) {
-            const url = `https://infinite-castle-74205.herokuapp.com/parts/${id}`;
+            const url = `https://infinite-castle-74205.herokuapp.com/parts/${parts._id}`;
             fetch(url, {
                 method: "DELETE",
+
             })
                 .then((res) => res.json())
                 .then((data) => {
                     console.log(data);
-                    const remaining = parts.filter((product) => product._id !== id);
+                    const remaining = parts.filter((part) => part._id !== id);
                     setParts(remaining);
                     toast.success("Delete Success");
                 });
@@ -23,6 +26,7 @@ const ManageProduct = () => {
     };
     return (
         <div className="">
+            <h2 className="text-accent text-3xl text-center py-5">Manage Product</h2>
             <div className="overflow-x-auto">
                 <table className="table w-11/12">
                     <thead>

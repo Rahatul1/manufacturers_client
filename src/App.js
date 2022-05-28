@@ -21,6 +21,7 @@ import MakeAdmin from './Pages/Dashboard/Admin/MakeAdmin';
 import AddProduct from './Pages/Dashboard/Admin/AddProduct';
 import RequireAdmin from './Pages/Login/RequireAdmin';
 import Payment from './Pages/Dashboard/Payment';
+import MyPortpolio from './Pages/Home/MyPortpolio/MyPortpolio';
 
 
 
@@ -32,6 +33,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="home" element={<Home />}></Route>
         <Route path="blogs" element={<Blogs />}></Route >
+        <Route path="MyPortpolio" element={<MyPortpolio />}></Route >
         <Route path="purchase/:id" element={
           <RequireAuth>
             <Purchase />

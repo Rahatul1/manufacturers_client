@@ -13,10 +13,8 @@ const MakeAdmin = () => {
         return <Lodding />
     }
 
-    // 
-
     return (
-        <d>
+        <>
             <div className="overflow-x-auto">
                 <h2 className="text-3xl text-accent py-5 text-center bg-gray-100">Make Admin: {users.length}</h2>
                 <table className="table w-full">
@@ -35,7 +33,7 @@ const MakeAdmin = () => {
                     </tbody>
                 </table>
             </div>
-        </d>
+        </>
     );
 };
 

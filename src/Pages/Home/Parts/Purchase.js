@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -11,34 +11,28 @@ const Purchase = () => {
     const { id } = useParams();
     const [user, loading] = useAuthState(auth);
     const [parts, setParts] = useParts({});
+    const [btndisabled, setBtnDisabled] = useState(true);
     const { minOrderQuantity, name, price, stock, image } = parts;
+    // console.log(parts?.minOrderQuantity);
+    const [error, setError] = useState();
 
-    // // const [minQ, setminQ] = useState(true)
-    // const state = {
-    //     disabled: true
-    // }
-    // const handlequantity = (e) => {
-    //     if (e.target.value >= minOrderQuantity) {
-    //         this.setState({
-    //             disabled: false
-    //         });
-    //     }
-    // }
+
+
 
     useEffect(() => {
         fetch(`https://infinite-castle-74205.herokuapp.com/parts/${id}`)
             .then(res => res.json())
             .then(data => setParts(data))
-    }, [id, setParts]);
+    }, [id, parts, setParts]);
 
-    if (loading) {
-        return <Lodding></Lodding>
-    }
+
 
     const handleBooking = (event) => {
         event.preventDefault();
         const booking = {
             price: parts.price,
+            minOrderQuantity: parts.minOrderQuantity,
+            available: parts.stock,
             displayName: user.displayName,
             email: user.email,
             name: event.target.name.value,
@@ -57,18 +51,38 @@ const Purchase = () => {
             .then(data => {
                 console.log(data);
                 toast.success('add product')
-                // if (data.success) {
-                //     // toast.success(`Appointments seccess, ${minOrderQuantity} at ${stock}`)
-                //     toast.success("Appointments seccess")
-                // }
-                // else {
-                //     // toast.error(`You allready have an Appointment on: ${minOrderQuantity} at ${stock}`)
-                //     toast.error("You allready have an Appointment on")
-                // }
-                // setParts(null);
             })
-        //
     }
+    if (loading) {
+        return <Lodding></Lodding>
+    }
+
+    // const updateAmount = event=>{
+    //     const quantity = event.target.value;
+    //     if(quantity>=minimum && quantity<=available){
+    //         setOrderQuantity(quantity);
+    //         const totalAmount = quantity*price;
+    //         setTotalPrice(totalAmount)
+    //         setError('')
+    //     }else{
+    //         setError('Please add minimum or available quantity')
+    //     }
+    // }
+
+    // <input className={`${error ? 'disabled' : ''}btn mt-4 w-full max-w-xs`} type="submit" value="Place Order" />
+
+
+    const handleChange = (event) => {
+        const quantity = event.target.value;
+        // console.log(e.target.value)
+        if (quantity >= minOrderQuantity && quantity <= stock) {
+            setBtnDisabled(false)
+        } else {
+            setBtnDisabled(true);
+            setError('Please add minimum or available quantity')
+        }
+    }
+
     return (
         <>
             <div className="justify-center mt-5">
@@ -111,18 +125,19 @@ const Purchase = () => {
                             name="phone"
                             placeholder="Phone Number" className="input input-bordered w-full max-w-xs" />
                         <input type="number"
-                            // onChange={handlequantity}
+                            onChange={handleChange}
                             name="quantity"
-                            placeholder="quantity" className="input input-bordered w-full max-w-xs" />
+                            placeholder="quantity" className="mx-3 input input-bordered w-full max-w-xs" />
+
                         <input
-                            // disabled={state.disabled}
-                            className="w-50 mx-auto btn btn-dark"
+                            disabled={btndisabled}
+                            className="mt-4 w-full max-w-xs w-50 mx-auto btn btn-dark"
                             value="Purchase Booked"
                             type="submit"
                         />
                     </form>
                 </div>
-            </div>
+            </div >
         </>
     );
 };

@@ -70,15 +70,15 @@ const Myprofile = () => {
     return (
         <>
             <div className="justify-center mt-5">
-                <div class="card w-96 bg-base-100 shadow-xl">
-                    <figure class="px-10 pt-10">
-                        <div class="avatar">
-                            <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                <div className="card w-96 bg-base-100 shadow-xl">
+                    <figure className="px-10 pt-10">
+                        <div className="avatar">
+                            <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                                 <img src="" alt="" />
                             </div>
                         </div>
                     </figure>
-                    <div class="card-body items-center text-center">
+                    <div className="card-body items-center text-center">
                         <h2 className="text-xl"><b>Name:</b> {user?.displayName}</h2>
                         <p><b>Email:</b> {user?.email}</p>
                         {

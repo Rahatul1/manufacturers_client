@@ -30,6 +30,7 @@ const Navbar = () => {
                             <li><Link to="/parts">Parts</Link></li>
                             <li><Link to="/Blogs">Blogs</Link></li>
                             <li><Link to="/dashboard">Dashboard</Link></li>
+                            <li><Link to="/MyPortpolio">My Portpolio</Link></li>
                         </ul>
                     </div>
                     <Link to="/" className="btn btn-ghost normal-case text-xl w-28 "><img src="https://i.ibb.co/h8dfxCP/logo.png" alt="" /></Link>
@@ -39,6 +40,7 @@ const Navbar = () => {
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/blogs">Blogs</Link></li>
                         <li><Link to="/dashboard">Dashboard</Link></li>
+                        <li><Link to="/MyPortpolio">My Portpolio</Link></li>
                     </ul>
                 </div>
                 <li>{user ? <button onClick={logout} className="btn btn-accent btn-sm">Sign Out</button> : <Link to="/login" className="btn btn-secondary">Login</Link>}</li>
