@@ -14,7 +14,7 @@ const Purchase = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:4000/parts/${id}`)
+        fetch(`https://infinite-castle-74205.herokuapp.com/parts/${id}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -38,7 +38,7 @@ const Purchase = () => {
             address: event.target.address.value,
             quantity: event.target.quantity.value
         }
-        fetch('http://localhost:4000/purchase', {
+        fetch('https://infinite-castle-74205.herokuapp.com/purchase', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -100,7 +100,7 @@ const Purchase = () => {
                             disabled
                             value={parts?.name}
                             name="name"
-                            placeholder="Address" className="input input-bordered w-full max-w-xs" />
+                            className="input input-bordered w-full max-w-xs" />
                         <input type="text"
                             name="address"
                             placeholder="Address" className="input input-bordered w-full max-w-xs" />
